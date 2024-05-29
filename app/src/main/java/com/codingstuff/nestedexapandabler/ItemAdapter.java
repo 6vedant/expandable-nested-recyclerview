@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -53,9 +54,17 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(v.getContext(), "Clicked "+holder.mTextView.getText().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.mArrowImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 model.setExpandable(!model.isExpandable());
                 list = model.getNestedList();
                 notifyItemChanged(holder.getAdapterPosition());
+
             }
         });
     }
